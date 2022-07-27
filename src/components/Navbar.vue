@@ -6,10 +6,10 @@
    <template>
     <div>
         <div class="bg-gray-500">
-            <nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center">
+            <nav class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
                 <div class="flex items-center justify-between">
                     <RouterLink to="/">
-                        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50" height="50" />
+                        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" height="30" />
                     </RouterLink>
 
                     <div @click="showMenu = !showMenu" class="flex md:hidden">
