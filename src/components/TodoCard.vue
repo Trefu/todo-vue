@@ -3,6 +3,9 @@ defineProps({
     todo: {
         type: Object,
         required: true
+    },
+    userId: {
+        type: Number
     }
 })
 </script>

@@ -1,42 +1,48 @@
 <script setup>
-import { onMounted, reactive, ref, computed } from 'vue';
+import { onMounted, reactive, ref, computed, onBeforeMount } from 'vue';
 import { apiGetTodos } from "@/utils/endpoints.js";
 import { normalizeTodos } from "@/utils/parsers.js";
 import TodoCard from '../components/TodoCard.vue';
-
-let modalVisible = ref(false);
-let loading = ref(false);
+defineProps({
+  userId: {
+    type: String,
+    required: true
+  }
+})
 let todos = ref([]);
 const todosNotDone = computed(() => {
   return todos.value.filter(t => !t.done);
 })
+
 let error = ref(null);
 
-/* function add(todo) {
-  todos.value = [...todos.value, todo]
-  console.log(todos)
-}
- */
-const fetchTodos = async () => {
-  loading.value = true;
+async function fetchTodos() {
   try {
-    const data = await fetch(apiGetTodos())
+    const data = await fetch(apiGetTodos(userId))
     const res = await data.json()
     todos.value = res;
     console.log(todos.value);
   } catch (error) {
     console.log(error)
   }
-  loading.value = false
 }
-fetchTodos();
+
+function test() {
+  console.log(userId)
+}
+onMounted(() => {
+  test()
+})
+//fetchTodos()
+
 </script>
 <template>
   <div>
     <h1 class="text-5xl p-5">Mis tareas view</h1>
     <div class="d-flex flex-col">
-      <TodoCard class="p-2 m-5" v-for=" todo in todos" :key="todo.id" :todo="todo">
-      </TodoCard>
+      {{ userId }}
+      <!--       <TodoCard class="p-2 m-5" v-for=" todo in todos" :key="todo.id" :todo="todo">
+      </TodoCard> -->
     </div>
 
   </div>

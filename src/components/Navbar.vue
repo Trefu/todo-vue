@@ -1,7 +1,12 @@
    <script setup>
    import { ref } from "vue";
    const showMenu = ref(true);
-   
+   defineProps({
+       userId: {
+           type: Number,
+           required: true
+       }
+   })
    </script>
    <template>
     <div>
@@ -26,13 +31,15 @@
 
                 <ul :class="showMenu ? 'flex' : 'hidden'"
                     class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0">
-                    <RouterLink to="/" class="text-sm font-bold text-gray-800 hover:text-blue-400">
+                    <RouterLink :to="{ name: 'home' }" class="text-sm font-bold text-gray-800 hover:text-blue-400">
                         Inicio
                     </RouterLink>
-                    <RouterLink to="/schedule" class="text-sm font-bold text-gray-800 hover:text-blue-400">
+                    <RouterLink :to="{ name: 'schedule', params: { userId: userId } }"
+                        class="text-sm font-bold text-gray-800 hover:text-blue-400">
                         Mis tareas
                     </RouterLink>
-                    <RouterLink to="/done-tasks" class="text-sm font-bold text-gray-800 hover:text-blue-400">
+                    <RouterLink :to="{ name: 'done-tasks' }"
+                        class="text-sm font-bold text-gray-800 hover:text-blue-400">
                         Tareas completadas
                     </RouterLink>
                 </ul>
