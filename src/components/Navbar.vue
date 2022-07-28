@@ -1,14 +1,16 @@
    <script setup>
-   import { ref } from "vue";
+   import { onMounted, ref, toRefs } from "vue";
    const showMenu = ref(true);
-   defineProps({
+   const props = defineProps({
        userId: {
            type: Number,
-           required: true
        }
    })
+   const { userId } = toRefs(props)
+   
    </script>
    <template>
+
     <div>
         <div class="bg-gray-500">
             <nav class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
