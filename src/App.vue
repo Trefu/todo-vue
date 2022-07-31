@@ -1,9 +1,9 @@
 <script setup>
 import { RouterView } from "vue-router";
-   import { ref, toRef } from "vue";
+import { ref, toRef } from "vue";
 
 import Navbar from "./components/Navbar.vue";
-const userId = 1;
+const userId = ref(1);
 
 </script>
 
