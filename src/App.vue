@@ -1,15 +1,14 @@
 <script setup>
 import { RouterView } from "vue-router";
-import { ref, toRef } from "vue";
-
+import { ref } from "vue";
 import Navbar from "./components/Navbar.vue";
-const userId = ref(1);
-
+import { createPinia, storeToRefs } from "pinia";
+const pinia = createPinia();
 </script>
 
 <template>
   <header>
-    <Navbar :userId=userId />
+    <Navbar  />
   </header>
 
   <RouterView />

@@ -11,10 +11,8 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/schedule/:userId",
+      path: "/schedule/",
       name: "schedule",
-      //para tomar userId como prop de componente
-      props: true,
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.

@@ -3,24 +3,17 @@ import { onMounted, reactive, ref, computed, toRefs } from 'vue';
 import { apiGetTodos } from "@/utils/endpoints.js";
 import { normalizeTodos } from "@/utils/parsers.js";
 import TodoCard from '../components/TodoCard.vue';
-const props = defineProps({
-  userId: {
-    type: String,
-    required: true,
-  }
-})
-const { userId } = toRefs(props)
-let todos = ref([]);
-const todosNotDone = computed(() => {
-  return todos.value.filter(t => !t.done);
-})
+import { useTodosStore } from '@/stores/todos.js'
+import { useUserStore } from '@/stores/user.js'
+const userStore = useUserStore();
+const todosStore = useTodosStore();
 
 async function fetchTodos() {
   try {
-    const data = await fetch(apiGetTodos(userId.value))
+    const data = await fetch(apiGetTodos(userStore.userId))
     const res = await data.json()
-    todos.value = res;
-    console.log(todos.value);
+    todosStore.todos = res;
+    console.log(todosStore.todos);
   } catch (error) {
     console.log(error)
   }
@@ -33,7 +26,7 @@ fetchTodos()
   <div>
     <h1 class="text-5xl p-5">Mis tareas view</h1>
     <div class="d-flex flex-col">
-      <TodoCard class="p-2 m-5" v-for=" todo in todos" :key="todo.id" :todo="todo">
+      <TodoCard class="p-2 m-5" v-for="todo in todosStore.todos" :key="todo.id" :todo="todo">
       </TodoCard>
     </div>
 

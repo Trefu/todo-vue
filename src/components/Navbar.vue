@@ -1,12 +1,6 @@
    <script setup>
    import { onMounted, ref, toRefs } from "vue";
    const showMenu = ref(true);
-   const props = defineProps({
-       userId: {
-           type: Number,
-       }
-   })
-   const { userId } = toRefs(props)
    
    </script>
    <template>
@@ -36,8 +30,7 @@
                     <RouterLink :to="{ name: 'home' }" class="text-sm font-bold text-gray-800 hover:text-blue-400">
                         Inicio
                     </RouterLink>
-                    <RouterLink :to="{ name: 'schedule', params: { userId: userId } }"
-                        class="text-sm font-bold text-gray-800 hover:text-blue-400">
+                    <RouterLink :to="{ name: 'schedule' }" class="text-sm font-bold text-gray-800 hover:text-blue-400">
                         Mis tareas
                     </RouterLink>
                     <RouterLink :to="{ name: 'done-tasks' }"
