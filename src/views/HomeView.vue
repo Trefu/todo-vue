@@ -23,16 +23,11 @@ fetchTodos()
 <template>
   <main class="container mx-auto py-4">
     <div class="d-flex flex-col">
-      <h1 class="text-6xl">Mis tareas completadas</h1>
-      <p class="text-red-300 text-3xl my-5" v-if="todosStore.doneYet.length <= 0">No hay tareas completadas</p>
-      <TodoCard v-for=" todo in todosStore.doneYet" :key="todo.id" :todo="todo">
+      <h1 class="text-6xl">Mis tareas</h1>
+      <p class="text-red-300 text-3xl my-5" v-if="todosStore.todos.length <= 0">No hay tareas.</p>
+      <TodoCard v-for="(todo) in todosStore.todos" :key="todo.id" :todo="todo">
       </TodoCard>
     </div>
-    <div class="d-flex flex-col">
-      <h2 class="text-5xl">Tareas a hacer</h2>
-      <p class="text-green-300 text-3xl my-5" v-if="todosStore.notDoneYet.length <= 0">No hay tareas sin completar</p>
-      <TodoCard v-for="todo in todosStore.notDoneYet" :key="todo.id" :todo="todo">
-      </TodoCard>
-    </div>
+
   </main>
 </template>
