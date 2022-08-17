@@ -1,20 +1,27 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { apiGetTodos } from '../utils/endpoints';
 import TodoCard from '../components/TodoCard.vue';
 import { useTodosStore } from '@/stores/todos.js'
 import { useUserStore } from '@/stores/user.js'
+import ModalNewTodo from '../components/ModalNewTodo.vue';
 const userStore = useUserStore();
 const todosStore = useTodosStore();
+const modalOpen = ref(true);
 
 async function fetchTodos() {
   try {
     const data = await fetch(apiGetTodos(userStore.userId))
     const res = await data.json()
     todosStore.todos = res;
+    console.log(res)
   } catch (error) {
     console.log(error)
   }
+}
+
+function cancelModal() {
+  return modalOpen.value = false;
 }
 
 fetchTodos()
@@ -29,5 +36,6 @@ fetchTodos()
       </TodoCard>
     </div>
 
+    <ModalNewTodo :modalOpen=modalOpen @close-modal="cancelModal" />
   </main>
 </template>
